@@ -33,7 +33,7 @@ def EDIT_MY_ADDRESS_BOOK():
         print("ADDRESS BOOK DOES NOT EXIST IN FINAL ADDRESS BOOK!")
     else:
         print("address book present in the final address book")
-        OPTIONS=('''SELECT THE VLAUES YOU WANT TO DELETE:-
+        OPTIONS=('''SELECT THE VLAUES YOU WANT TO EDIT:-
         1.FIRST NAME
         2.LAST NAME
         3.PHONE NUMBER
