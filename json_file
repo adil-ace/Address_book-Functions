@@ -1,0 +1,122 @@
+import json
+
+FINAL_MY_ADDRESS_BOOK={}
+
+#CREATING THE ADDRESS BOOK DESIRED BY THE USER//
+def MY_ADDRESS_BOOK():
+    NO_OF_CONTACTS = int(input("ENTER THE NUMBER CONTACTS YOU WANT TO ADD:"))
+    for x in range(NO_OF_CONTACTS):
+        name_of_address_book=input("ENTER NAME OF ADDRESS BOOK:")
+        if name_of_address_book not in FINAL_MY_ADDRESS_BOOK :
+            FINAL_MY_ADDRESS_BOOK[name_of_address_book]={}
+            NAME=input("1.ENTER YOUR  FIRST NAME:")
+            FINAL_MY_ADDRESS_BOOK[name_of_address_book]["FRIST_NAME"]=NAME
+            LAST_NAME=input("2.ENTER YOUR LAST NAME:")
+            FINAL_MY_ADDRESS_BOOK[name_of_address_book]["LAST_NAME"]=LAST_NAME
+            PHONE_NUMBER=int(input("3.ENTER YOUR MOBILE NUMBER:"))
+            FINAL_MY_ADDRESS_BOOK[name_of_address_book]["PHONE_NUMBER"]=PHONE_NUMBER
+            E_MAIL=str(input("4.ENTER YOUR E-MAIL:"))
+            FINAL_MY_ADDRESS_BOOK[name_of_address_book]["E_MAIL"]=E_MAIL
+            ZIP_CODE=int(input("5.ENTER THE ZIP CODE OF YOUR CITY:"))
+            FINAL_MY_ADDRESS_BOOK[name_of_address_book]["ZIP_CODE"]=ZIP_CODE
+            CITY=input("6.ENTER YOUR CITY NAME:")
+            FINAL_MY_ADDRESS_BOOK[name_of_address_book]["CITY_NAME"]=CITY
+            STATE=input("7.ENTER YOUR STATE:")
+            FINAL_MY_ADDRESS_BOOK[name_of_address_book]["STATE"]=STATE
+        else:
+            print("contact already exist enter a different name!")
+    print(FINAL_MY_ADDRESS_BOOK)
+# MY_ADDRESS_BOOK()
+
+#EDITING THE EXISTING ADDRESSBOOK//
+def EDIT_MY_ADDRESS_BOOK():
+    edit_book=input("ENTER THE NAME OF ADDRESS BOOK TO BE UPDATED:")
+    if edit_book not in FINAL_MY_ADDRESS_BOOK:
+        print("ADDRESS BOOK DOES NOT EXIST IN FINAL ADDRESS BOOK!")
+    else:
+        print("address book present in the final address book")
+        OPTIONS=('''SELECT THE VLAUES YOU WANT TO EDIT:-
+        1.FIRST NAME
+        2.LAST NAME
+        3.PHONE NUMBER
+        4.E_mail
+        5.ZIP_CODE
+        6.CITY
+        7.STATE''')
+        print(OPTIONS)
+        ENTER_KEY_TO_BE_EDITED=int(input("ENTER YOUR DESIRED KEY TO BE UPDATED:"))
+        print(ENTER_KEY_TO_BE_EDITED)
+        if ENTER_KEY_TO_BE_EDITED==1:
+            print("You cannot change the first name in address book. ")
+        elif ENTER_KEY_TO_BE_EDITED == 2:
+            print("You cannot change the last name in address book. ")    
+        elif ENTER_KEY_TO_BE_EDITED == 3:
+            PHONE_N0=int(input("ENTER THE NEW PHONE NUMBER:"))
+            FINAL_MY_ADDRESS_BOOK[edit_book]["PHONE_NUMBER"]=PHONE_N0
+        elif ENTER_KEY_TO_BE_EDITED == 4:
+            E_MAIL=input("ENTER THE NEW E_MAIL ADDRESS:")
+            FINAL_MY_ADDRESS_BOOK[edit_book]["E_MAIL"] = E_MAIL
+        elif ENTER_KEY_TO_BE_EDITED ==5:
+            ZIP_CODE=int(input("ENTER THE ZIP CODE OF CITY: "))
+            FINAL_MY_ADDRESS_BOOK[edit_book]["ZIP CODE"]=ZIP_CODE
+        elif ENTER_KEY_TO_BE_EDITED ==6:
+            CITY=input("ENTER THE NEW CURRENT CITY:")
+            FINAL_MY_ADDRESS_BOOK[edit_book]["CITY"]=CITY
+        elif ENTER_KEY_TO_BE_EDITED==7:
+            STATE=input("ENTER THE CURRENT STATE:")
+            FINAL_MY_ADDRESS_BOOK[edit_book]["STATE"]=STATE
+        else:
+            print("ENTER A VALID INPUT!")
+    print(FINAL_MY_ADDRESS_BOOK)
+
+# EDIT_MY_ADDRESS_BOOK()    
+
+#DELETING VALUES OF ADDRESS BOOK//
+def DELETING_VALUES_FROM_ADDRESS_BOOK():
+    DELETE_BOOK=(input("ENETER THE ADDRESS BOOK YOU WANT TO DELETE:"))
+    if DELETE_BOOK not in FINAL_MY_ADDRESS_BOOK:
+        print("ENTER A VALID NAME OF ADDRESS BOOK!")
+    else:
+        print(("ADDRESS BOOK PRESENT IN THE FINAL ADDRESS BOOK."))
+        OPTIONS=("ENTER THE NAME OF ADDRESS BOOK YOU WANT TO DELETE:-")
+        print(OPTIONS)
+        FINAL_MY_ADDRESS_BOOK.pop(DELETE_BOOK)
+        print(FINAL_MY_ADDRESS_BOOK)
+
+def exit():
+    print("GOOD BYE$$")
+
+
+if __name__ == "__main__":
+
+    while(True):
+        BEGINING='''WELCOME TO THE ADRRESS BOOK SELECT THE OPERATION TO BE PERFORMED
+        1.CREATE A NEW ADDRESS BOOK.
+        2. SHOW THE EXISTING ADDRESS BOOK.
+        3.EDIT THE EXISTING ADDRESS BOOK.
+        4.DELETE VALUES FROM EXISTING ADDRESS BOOK
+        5.exit'''
+        print(BEGINING)
+        YOUR_CHOICE=int(input("ENTER YOUR CHOICE FOR THE PHONE BOOK:"))
+        if YOUR_CHOICE==2:
+            print(FINAL_MY_ADDRESS_BOOK)
+        elif YOUR_CHOICE==1:
+            MY_ADDRESS_BOOK()
+        elif YOUR_CHOICE==3:
+            EDIT_MY_ADDRESS_BOOK()
+        elif YOUR_CHOICE==4:
+            DELETING_VALUES_FROM_ADDRESS_BOOK()   
+        elif YOUR_CHOICE==5:
+            exit() 
+            break
+        else:
+            print('''PLEASE TRY AGAIN!
+            WITH A VALID CHOICE.''')
+        
+            break
+ADDRESS_BOOK=json.dumps(FINAL_MY_ADDRESS_BOOK)
+print(ADDRESS_BOOK[FINAL_MY_ADDRESS_BOOK])
+f=open("add_book_json","w")
+f.write(ADDRESS_BOOK)
+# print(typ)
+print(json.dumps(FINAL_MY_ADDRESS_BOOK,indent=5))
